@@ -9,7 +9,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import remote.thymeleafspringform.domain.item.Item;
 import remote.thymeleafspringform.domain.item.ItemRepository;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -18,6 +20,16 @@ import java.util.List;
 public class FormItemController {
 
 	private final ItemRepository itemRepository;
+
+	//클래스 호출 시 데이터 자동 생성
+	@ModelAttribute("regions")
+	private Map<String, String> regions() {
+		Map<String, String> regionsMap = new LinkedHashMap<>();
+		regionsMap.put("SEOUL", "서울");
+		regionsMap.put("BUSAN", "부산");
+		regionsMap.put("JEJU", "제주");
+		return regionsMap;
+	}
 
 	@GetMapping
 	public String items(Model model) {
@@ -35,6 +47,7 @@ public class FormItemController {
 
 	@GetMapping("/add")
 	public String addForm(Model model) {
+		log.info("item = {}", regions());
 		model.addAttribute("item", new Item());
 		return "form/addForm";
 	}

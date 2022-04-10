@@ -8,10 +8,10 @@ form 내부의 데이터를 object로 인하여 <th:field>를 활용하게 되�
 
 * 예제
 
-    <form th:object="${item}">
-        <input th:field="*{name}">
-        <input th:field="*{price}">
-    </form>
+      <form th:object="${item}">
+          <input th:field="*{name}">
+          <input th:field="*{price}">
+      </form>
 
 형식으로 사용하고, 속성값에 데이터를 매핑한다.
 
@@ -31,4 +31,10 @@ field의 경우 속성값 id, name, value에 매핑되어 데이터를 나타낼
 
 --------------------
 
-###     
+### 타임리프 - 체크 박스 멀티
+
+여러개의 체크박스가 있을 경우 List형식으로 데이터를 담아 반복하며 ${#ids.prev('items')} 형식을 사용한다. 데이터가 담겨져 있는 형태를 볼 수 있다.
+
+@ModelAttribute('regions') 형식을 메소드단에 사용하게 되면 메소드를 model의 attribute로 삽입하여 주도록 되어있다. == model.attribute(
+regions)[method name] 형식이다.
+

@@ -13,9 +13,9 @@ public class Item {
 	private Integer quantity;
 
 	private Boolean open; //판매 여부
-	private List<String> regisons; //등록지역 서울,울산 등등
-	private ItemType itemType;
-	private DeliveryCode deliveryCode;
+	private List<String> regions; //등록지역 서울,울산 등등
+	private ItemType itemType; //상품 종류
+	private DeliveryCode deliveryCode;  //배송 방식
 
 	public Item() {
 	}
