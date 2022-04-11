@@ -38,3 +38,22 @@ field의 경우 속성값 id, name, value에 매핑되어 데이터를 나타낼
 @ModelAttribute('regions') 형식을 메소드단에 사용하게 되면 메소드를 model의 attribute로 삽입하여 주도록 되어있다. == model.attribute(
 regions)[method name] 형식이다.
 
+-------------------
+
+### 타임리프 - 라디오 버튼
+
+타임리프를 활용하여 라디오 버튼을 생성할 경우 Enum을 활용하여 배열객체로 만들어 주면 가용성이 더욱 편하게 매핑할 수 있다.
+
+객체에 직접적으로 Enum을 담아 전달하면 타임리프에서 자바 객체에 직접 접근이 가능하다.
+
+    @ModelAttribute("itemTypes")
+    public ItemType[] itemTypes() {
+      return ItemType.values();
+    }
+
+* 자바 객체에 직접 접근하는 방식 (추천하지 않는 방식)
+
+`<div th:each="type : ${T(hello.itemservice.domain.item.ItemType).values()}">`
+
+--------------------
+

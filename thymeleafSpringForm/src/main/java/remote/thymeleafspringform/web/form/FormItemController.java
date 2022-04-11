@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import remote.thymeleafspringform.domain.item.Item;
 import remote.thymeleafspringform.domain.item.ItemRepository;
+import remote.thymeleafspringform.domain.item.ItemType;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -29,6 +30,11 @@ public class FormItemController {
 		regionsMap.put("BUSAN", "부산");
 		regionsMap.put("JEJU", "제주");
 		return regionsMap;
+	}
+
+	@ModelAttribute("itemTypes")
+	private ItemType[] itemTypes() {
+		return ItemType.values();
 	}
 
 	@GetMapping
