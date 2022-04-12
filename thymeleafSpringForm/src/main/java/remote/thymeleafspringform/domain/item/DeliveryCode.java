@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class DeliveryCode {
-
-	private String codel;
-	private String displayName;
+    private String code;
+    private String displayName;
 }

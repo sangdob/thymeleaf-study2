@@ -74,6 +74,23 @@
         </div>
     </div>
 
+
+    <hr class="my-4">
+
+    <div>
+        <div>배송 방식</div>
+        <select th:field="${item.deliveryCode}" class="form-select" disabled>
+            <option value="">==배송 방식 선택==</option>
+            <option th:each="deliverycode : ${deliveryCodes}"
+                    th:value="${deliverycode.code}"
+                    th:text="${deliverycode.displayName}">
+                Default Fast
+            </option>
+        </select>
+    </div>
+
+    <hr class="my-4">
+
     <div class="row">
         <div class="col">
             <button class="w-100 btn btn-primary btn-lg"

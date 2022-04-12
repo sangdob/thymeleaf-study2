@@ -6,10 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import remote.thymeleafspringform.domain.item.DeliveryCode;
 import remote.thymeleafspringform.domain.item.Item;
 import remote.thymeleafspringform.domain.item.ItemRepository;
 import remote.thymeleafspringform.domain.item.ItemType;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,67 +22,77 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class FormItemController {
 
-	private final ItemRepository itemRepository;
+    private final ItemRepository itemRepository;
 
-	//클래스 호출 시 데이터 자동 생성
-	@ModelAttribute("regions")
-	private Map<String, String> regions() {
-		Map<String, String> regionsMap = new LinkedHashMap<>();
-		regionsMap.put("SEOUL", "서울");
-		regionsMap.put("BUSAN", "부산");
-		regionsMap.put("JEJU", "제주");
-		return regionsMap;
-	}
+    //클래스 호출 시 데이터 자동 생성
+    @ModelAttribute("regions")
+    private Map<String, String> regions() {
+        Map<String, String> regionsMap = new LinkedHashMap<>();
+        regionsMap.put("SEOUL", "서울");
+        regionsMap.put("BUSAN", "부산");
+        regionsMap.put("JEJU", "제주");
+        return regionsMap;
+    }
 
-	@ModelAttribute("itemTypes")
-	private ItemType[] itemTypes() {
-		return ItemType.values();
-	}
+    @ModelAttribute("itemTypes")
+    private ItemType[] itemTypes() {
+        return ItemType.values();
+    }
 
-	@GetMapping
-	public String items(Model model) {
-		List<Item> items = itemRepository.findAll();
-		model.addAttribute("items", items);
-		return "form/items";
-	}
+    @ModelAttribute("deliveryCodes")
+    private List<DeliveryCode> deliveryCodes() {
+        List<DeliveryCode> deliveryCodes = new ArrayList<>();
+        deliveryCodes.add(new DeliveryCode("FAST", "빠른 배송"));
+        deliveryCodes.add(new DeliveryCode("NORMAL", "일반 배송"));
+        deliveryCodes.add(new DeliveryCode("SLOW", "느린 배송"));
 
-	@GetMapping("/{itemId}")
-	public String item(@PathVariable long itemId, Model model) {
-		Item item = itemRepository.findById(itemId);
-		model.addAttribute("item", item);
-		return "form/item";
-	}
+        return deliveryCodes;
+    }
 
-	@GetMapping("/add")
-	public String addForm(Model model) {
-		log.info("item = {}", regions());
-		model.addAttribute("item", new Item());
-		return "form/addForm";
-	}
+    @GetMapping
+    public String items(Model model) {
+        List<Item> items = itemRepository.findAll();
+        model.addAttribute("items", items);
+        return "form/items";
+    }
 
-	@PostMapping("/add")
-	public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes) {
+    @GetMapping("/{itemId}")
+    public String item(@PathVariable long itemId, Model model) {
+        Item item = itemRepository.findById(itemId);
+        model.addAttribute("item", item);
+        return "form/item";
+    }
 
-		log.info("add log = {}", item.getOpen());
+    @GetMapping("/add")
+    public String addForm(Model model) {
+        log.info("item = {}", regions());
+        model.addAttribute("item", new Item());
+        return "form/addForm";
+    }
 
-		Item savedItem = itemRepository.save(item);
-		redirectAttributes.addAttribute("itemId", savedItem.getId());
-		redirectAttributes.addAttribute("status", true);
-		return "redirect:/form/items/{itemId}";
-	}
+    @PostMapping("/add")
+    public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes) {
 
-	@GetMapping("/{itemId}/edit")
-	public String editForm(@PathVariable Long itemId, Model model) {
-		Item item = itemRepository.findById(itemId);
-		model.addAttribute("item", item);
-		return "form/editForm";
-	}
+        log.info("add log = {}", item.getOpen());
 
-	@PostMapping("/{itemId}/edit")
-	public String edit(@PathVariable Long itemId, @ModelAttribute Item item) {
-		itemRepository.update(itemId, item);
-		return "redirect:/form/items/{itemId}";
-	}
+        Item savedItem = itemRepository.save(item);
+        redirectAttributes.addAttribute("itemId", savedItem.getId());
+        redirectAttributes.addAttribute("status", true);
+        return "redirect:/form/items/{itemId}";
+    }
+
+    @GetMapping("/{itemId}/edit")
+    public String editForm(@PathVariable Long itemId, Model model) {
+        Item item = itemRepository.findById(itemId);
+        model.addAttribute("item", item);
+        return "form/editForm";
+    }
+
+    @PostMapping("/{itemId}/edit")
+    public String edit(@PathVariable Long itemId, @ModelAttribute Item item) {
+        itemRepository.update(itemId, item);
+        return "redirect:/form/items/{itemId}";
+    }
 
 }
 

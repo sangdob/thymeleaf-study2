@@ -57,3 +57,21 @@ regions)[method name] 형식이다.
 
 --------------------
 
+### 타임리프 - 선택 버튼
+
+타임리프의 object문법을 활용하여 Select버튼을 생성할 경우 Option을 객체나 List형식으로 반복하여 넣을 수 있다.
+
+    <div>
+     <div>배송 방식</div>
+     <select th:field="*{deliveryCode}" class="form-select">
+     <option value="">==배송 방식 선택==</option>
+     <option th:each="deliveryCode : ${deliveryCodes}" th:value="$
+    {deliveryCode.code}"
+     th:text="${deliveryCode.displayName}">FAST</option>
+     </select>
+    </div>
+
+이와 같은 방식으로 반복을 통해 option을 작성하게 되면 한가지 선택을 통해 값을 전달 할 수 있다.
+
+----------------------
+
