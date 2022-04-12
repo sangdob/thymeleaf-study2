@@ -53,7 +53,7 @@ regions)[method name] 형식이다.
 
 * 자바 객체에 직접 접근하는 방식 (추천하지 않는 방식)
 
-`<div th:each="type : ${T(hello.itemservice.domain.item.ItemType).values()}">`
+`<div th:each="type : ${T(hellomessage.messagestart.domain.item.ItemType).values()}">`
 
 --------------------
 
