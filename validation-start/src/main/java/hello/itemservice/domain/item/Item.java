@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @ScriptAssert(lang = "javascript", script = "_this.price * _this.quantity >= 10000", message = "총합이 10000이상 이어야 합니다.")
 public class Item {
 
-    @NotNull
+    @NotNull(groups = UpdateCheck.class) // 수정 요구사항 추가
     private Long id;
     /*
     * @NotBlank
@@ -25,15 +25,15 @@ public class Item {
     * NotBlank
     *
     * */
-    @NotBlank
+    @NotBlank(groups = {SaveCheck.class, UpdateCheck.class})
     private String itemName;
 
-    @NotNull
-    @Range(min = 1000, max = 1000000)
+    @NotNull(groups = {SaveCheck.class, UpdateCheck.class})
+    @Range(min = 1000, max = 1000000, groups = {SaveCheck.class, UpdateCheck.class})
     private Long price;
 
-    @NotNull
-    @Max(Integer.MAX_VALUE)
+    @NotNull(groups = {SaveCheck.class, UpdateCheck.class})
+    @Max(Integer.MAX_VALUE) //max값 제한 요구사항 추가
     private Integer quantity;
 
     public Item() {
