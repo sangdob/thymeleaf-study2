@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 @ScriptAssert(lang = "javascript", script = "_this.price * _this.quantity >= 10000", message = "총합이 10000이상 이어야 합니다.")
 public class Item {
 
+    @NotNull
     private Long id;
     /*
     * @NotBlank
@@ -32,7 +33,7 @@ public class Item {
     private Long price;
 
     @NotNull
-    @Max(9999)
+    @Max(Integer.MAX_VALUE)
     private Integer quantity;
 
     public Item() {
