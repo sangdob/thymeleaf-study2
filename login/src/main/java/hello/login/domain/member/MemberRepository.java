@@ -1,5 +1,6 @@
 package hello.login.domain.member;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
@@ -7,6 +8,7 @@ import java.util.*;
 
 @Slf4j
 @Repository
+@RequiredArgsConstructor
 public class MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();
