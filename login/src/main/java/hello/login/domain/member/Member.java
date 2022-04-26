@@ -1,10 +1,12 @@
 package hello.login.domain.member;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 
 @Data
+@RequiredArgsConstructor
 public class Member {
 
     private Long id;
