@@ -34,14 +34,14 @@ public class SessionManager {
         return sessionStore.get(cookies.getValue());
     }
 
-    protected void expire(HttpServletRequest request) {
+    public void expire(HttpServletRequest request) {
         Cookie sessionCookie = findCookies(request, SESSION_COOKIE_NAME);
         if (sessionCookie != null) {
             sessionStore.remove(sessionCookie.getValue());
         }
     }
 
-    protected Cookie findCookies(HttpServletRequest request, String cookieName) {
+    public Cookie findCookies(HttpServletRequest request, String cookieName) {
         Cookie[] cookies = request.getCookies();
         if (cookies == null) {
             return null;
