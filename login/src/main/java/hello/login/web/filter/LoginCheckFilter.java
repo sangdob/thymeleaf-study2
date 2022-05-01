@@ -41,7 +41,8 @@ public class LoginCheckFilter implements Filter {
             chain.doFilter(request,response);
         } catch (Exception e) {
             throw e;
-
+        } finally {
+            log.info("인증 체크 로직 종료 = {}", requestURI);
         }
     }
 
