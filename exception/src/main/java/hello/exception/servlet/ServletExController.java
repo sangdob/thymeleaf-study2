@@ -16,12 +16,14 @@ public class ServletExController {
         throw new RuntimeException("exception  !!");
     }
 
+    //404 에러
     @GetMapping("/error-404")
     public void error404(HttpServletResponse httpServletResponse) throws IOException {
 
         httpServletResponse.sendError(404, "404 error!!");
     }
 
+    // 505 error 화면
     @GetMapping("/error-500")
     public void error500(HttpServletResponse httpServletResponse) throws IOException {
 
