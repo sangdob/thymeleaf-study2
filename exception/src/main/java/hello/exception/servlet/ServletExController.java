@@ -19,7 +19,6 @@ public class ServletExController {
     //404 에러
     @GetMapping("/error-404")
     public void error404(HttpServletResponse httpServletResponse) throws IOException {
-
         httpServletResponse.sendError(404, "404 error!!");
     }
 
