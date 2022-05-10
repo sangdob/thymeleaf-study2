@@ -15,7 +15,7 @@ public class ServletExController {
     public void errorEx() {
         throw new RuntimeException("exception  !!");
     }
-
+//
     //404 에러
     @GetMapping("/error-404")
     public void error404(HttpServletResponse httpServletResponse) throws IOException {
