@@ -23,7 +23,9 @@ public class LogFilter implements Filter {
                          FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String requestURI = httpRequest.getRequestURI();
+
         String uuid = UUID.randomUUID().toString();
+
         try {
             log.info("REQUEST [{}][{}][{}]", uuid,
                     request.getDispatcherType(), requestURI);
