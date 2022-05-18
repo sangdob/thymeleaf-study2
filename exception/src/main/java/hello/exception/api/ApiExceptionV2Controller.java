@@ -19,6 +19,14 @@ public class ApiExceptionV2Controller {
         return new ErrorResult("BAD", e.getMessage());
     }
 
+    //공통으로 처리된 에러들 상속을 받거나 exception으로 타게될경우
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler
+    public ErrorResult exHandler(Exception e) {
+        log.error("[ExceptionHandler] ex = ",e);
+        return new ErrorResult("EX", "내부 오류");
+    }
+
     @ExceptionHandler
     public ResponseEntity<ErrorResult> userExhandle(UserException e) {
         log.info("[ExceptionHandle] ex = ", e);
@@ -27,7 +35,7 @@ public class ApiExceptionV2Controller {
     }
 
     @GetMapping("/members/{id}")
-    public MemberDto getMemberDto(@PathVariable("id") String id) {
+    public MemberDto getMember(@PathVariable("id") String id) {
         if (id.equals("ex")) {
             throw new RuntimeException("잘못된 사용자");
         }
