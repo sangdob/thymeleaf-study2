@@ -1,5 +1,6 @@
 package hello.typeconverter.controller;
 
+import hello.typeconverter.type.IpPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cglib.core.Converter;
 import org.springframework.expression.TypeConverter;
@@ -24,6 +25,12 @@ public class HelloController {
     @GetMapping("/hello-v2")
     public String helloV2(@RequestParam Integer data) {
         log.info("intValue = {} ", data);
+        return "ok";
+    }
+    @GetMapping("/ip-port")
+    public String ipPort(@RequestParam IpPort data) {
+        log.info("ipPort IP = {} ", data.getIp());
+        log.info("ipPort Port = {} ", data.getPort());
         return "ok";
     }
 }
