@@ -2,8 +2,6 @@ package hello.typeconverter.controller;
 
 import hello.typeconverter.type.IpPort;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cglib.core.Converter;
-import org.springframework.expression.TypeConverter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
