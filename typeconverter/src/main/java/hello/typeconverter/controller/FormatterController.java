@@ -40,6 +40,5 @@ public class FormatterController {
 
         @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime localDateTime;
-
     }
 }
